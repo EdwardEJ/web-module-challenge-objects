@@ -29,23 +29,21 @@ and should return a number.
 For example, burger.discount("teacher") would return 13.5 and burger.discount("public") would return 16.2*/
 
 function discount(patron) {
-  let discount = 0;
 
   if (patron === 'teacher' || patron === 'student') {
-    discount = this.price * 0.25;
-  } else if (patron === 'public') {
-    discount = this.price * 0.10;
+    return this.price * 0.75;
+  } else {
+    return this.price * 0.90;
   }
-  let finalPrice = this.price - discount;
-
-  return finalPrice;
 }
 
-// burger.discount = discount;
+burger.discount = discount;
 
-// console.log(burger.discount('public'));
+// console.log(burger.discount('teacher'));
 
 ///////////////Reviews (MVP)///////////////////
+
+
 
 const reviews = [
   { name: "Daniela", rating: 5, feedback: "Beautiful atmosphere and wonderful vegan options!" },
@@ -75,7 +73,7 @@ function addReview(arr, name, rating, feedback) {
 
 /* Task 5: Add the following feedback to Reyna's rating - "this place is chill with really cool people, great for getting work done on weekdays" */
 
-reviews[7].feedback = "this place is chill with really cool people, great for getting work done on weekdays";
+reviews[7].feedback = 'this place is chill with really cool people, great for getting work done on weekdays';
 
 // console.log(reviews[7].feedback);
 
@@ -124,15 +122,26 @@ function getLastReview(arr) {
 
   and should return an array of objects. 
 
-  For example, invoking getReviewByRating(reviews, 4) would return [{name: "Miranda", rating: 4, feedback:"fun trivia and cool vibes"},
+  For example, invoking getReviewByRating(reviews, 4) would return 
+  [
+    {name: "Miranda", rating: 4, feedback:"fun trivia and cool vibes"},
     {name: "Wen", rating: 4.5, feedback:"I don't leave my house often, but when I do, it's for this place. Highly reccomend."},
-    {name:"Lauren", rating: 4, feedback: "Absolutely love that they have karaoke Fridays! Food and drink selection is okay."}]
+    {name:"Lauren", rating: 4, feedback: "Absolutely love that they have karaoke Fridays! Food and drink selection is okay."}
+  ]
 */
 
-function getReviewByRating(/* code here */) {
-  /* code here */
+function getReviewByRating(arr, rating) {
+  let newArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].rating >= rating && arr[i].rating < rating + 1) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
 }
 
+// console.log(getReviewByRating(reviews, 4));
 
 /** STRETCH 2: Write a function called 'getLongestReview' that returns an array containing all reviews longer than 15 words. 
   
@@ -147,9 +156,19 @@ and should return an array of objects.
     {name: "Brett", rating: 3, feedback: "great selection of snacks and a nice cafe area to get work done during the day."},
     {name: "Julius", rating: 2, feedback: "I was largely unimpressed by this venue. Nothing special on the menu and too expensive. The atmosphere is polarizing, and not for me, but I think some would like it." }]
 */
-function getLongReviews(/* code here */) {
-  /* code here */
+
+function getLongReviews(arr) {
+  let newArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].feedback.split(' ').length > 15) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
 }
+
+// console.log(getLongReviews(reviews));
 
 
 /* STRETCH 3:  This challenge is not related to the data above! 
