@@ -190,14 +190,13 @@ The returned object should have the following characteristics:
 
 
 function carMaker(num) {
-  let obj = {
+  return {
     odometer: num,
     drive: function (distance) {
       this.odometer += distance;
       return this.odometer;
     }
   };
-  return obj;
 }
 
-console.log(carMaker(10));
+console.log(carMaker(10).drive(10));
